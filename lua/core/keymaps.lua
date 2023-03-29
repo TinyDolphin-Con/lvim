@@ -89,7 +89,24 @@ keymap({'n', 'x'}, ',,', '<Cmd>HopChar2<CR>', { noremap = true, silent = true })
 
 -- 插件 LSP Bindings
 
--- 插件 telescope
+-- 插件 vim-bookmarks 书签
+-- mm 当前行添加/删除书签
+-- mi 当前行添加/编辑/删除带注释的书签
+-- mn 跳转到缓冲区的下一个书签
+-- ma 显示所有书签
+-- mc 仅删除当前缓冲区的书签
+-- mx 清除所有缓冲区的书签
+--
 
 
--- 插件 toggleterm
+-- 插件 telescope 强大搜索工具
+
+-- 文本搜索（可带搜索参数）
+keymap('n', '<leader>fl', '<Cmd>Telescope live_grep_args<CR>', { noremap = true, silent = true })
+-- 书签搜索
+keymap('n', '<leader>ml', '<Cmd>Telescope vim_bookmarks current_file<CR>', { noremap = true, silent = true })
+keymap('n', '<leader>ml', '<Cmd>Telescope vim_bookmarks all<CR>', { noremap = true, silent = true })
+
+
+-- 插件 vim-visual-multi 多行编辑
+keymap({'n', 'v'}, '<leader>ma', '<Plug>(VM-Select-All)', { noremap = true, silent = true })
