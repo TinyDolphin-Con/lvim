@@ -46,10 +46,28 @@ opt.wildmenu = true
 --   再次点击Tab键，可以在wildmenu中遍历匹配的文件列表
 opt.wildmode = "list:longest,full"
 -- 在匹配列表中忽略指定类型的文件
-opt.wildignore = ".o,*~,*.pyc"
+opt.wildignore = {
+  "*.aux,*.out,*.toc",
+  "*.o,*.obj,*.dll,*.jar,*.pyc,__pycache__,*.rbc,*.class",
+  -- media
+  "*.ai,*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png,*.psd,*.webp",
+  "*.avi,*.m4a,*.mp3,*.oga,*.ogg,*.wav,*.webm",
+  "*.eot,*.otf,*.ttf,*.woff",
+  "*.doc,*.pdf",
+  -- archives
+  "*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz",
+  -- temp/system
+  "*.*~,*~ ",
+  "*.swp,.lock,.DS_Store,._*,tags.lock",
+  -- version control
+  ".git,.svn",
+}
 
 -- 左移键回到上一行的行尾，在行尾用右移键能够到下一行的开头
 opt.whichwrap = "<,>,b,s,h,l"
+
+-- 文件名自动补全时，忽略文件名的大小写
+opt.wildignorecase = true
 
 -- 忽略搜索模式的大小写
 opt.ignorecase = true
@@ -92,6 +110,8 @@ vim.cmd("autocmd FocusGained,BufEnter * checktime")
 opt.autowrite = true
 -- 当失去焦点或者离开当前的 buffer 的时候保存
 vim.cmd("autocmd FocusLost,BufLeave * silent! update")
+-- 启用交互式确认，影响文件内容时，向用户进行确认
+opt.confirm = true
 
 -- 不需要备份文件
 opt.backup = false
@@ -154,6 +174,10 @@ opt.switchbuf = "useopen,usetab,newtab"
 -- 缩进对齐线
 opt.colorcolumn = "99999"
 
+-- 显示特殊字符（比如：Tab、空格、行尾空格、换行符等等）
+opt.list = true
+opt.listchars = "tab:→ ,eol:↵,trail:·,extends:↷,precedes:↶"
+
 -- 命令行高度
 opt.cmdheight = 2
 -- 命令行菜单栏选择
@@ -162,8 +186,12 @@ opt.completeopt = { "menuone", "noselect" }
 -- 弹出窗口的高度
 opt.pumheight = 10
 
--- 完成一个键盘映射的等待时间
-opt.timeoutlen = 100
+-- 普通模式下，按键响应的等待时间（默认 1000）
+opt.timeoutlen = 200
+-- 插入模式下，按键响应的等待时间（默认 50）
+opt.ttimeoutlen = 10
+-- 屏幕重绘时间（默认 1000）
+-- opt.redrawtime = 1500
 
 -- 打开文件时，返回到最后的编辑位置并且居中显示
 vim.cmd([[autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | execute 'silent! ' . line("'\"") . 'foldopen!' | execute 'normal! ' . line("'\"") . 'Gzz' | endif]])
@@ -203,11 +231,16 @@ opt.titlestring = "%<%F%=%l/%L - nvim"
 -- 设置 undo 文件的保存路径
 opt.undodir = vim.fn.stdpath "cache" .. "/undo"
 
+
 -- general
+-- 主题
+-- lvim.colorscheme = "lunar"
+lvim.colorscheme = "tokyonight"
+-- 透明背景
+lvim.transparent_window = true
 lvim.log.level = "info"
 lvim.format_on_save = {
   enabled = true,
   pattern = "*.lua",
   timeout = 1000,
 }
-

@@ -82,43 +82,14 @@ keymap('c', '<C-e>', '<End>', { noremap = true, silent = true })
 -- zR ：打开所有折叠
 -- zM ：关闭所有折叠
 
+-- 插件 hop.nvim 窗口内快速跳转
+keymap({'n', 'x'}, ',', '<Cmd>HopChar1<CR>', { noremap = true, silent = true })
+keymap({'n', 'x'}, ',,', '<Cmd>HopChar2<CR>', { noremap = true, silent = true })
 
--- 主题
--- lvim.colorscheme = "lunar"
-lvim.colorscheme = "tokyonight"
--- 透明背景
-lvim.transparent_window = true
 
 -- 插件 LSP Bindings
--- lvim.lsp.buffer_mappings.normal_mode['H'] = { vim.lsp.buf.hover, "Show documentation" }
--- lvim.lsp.buffer_mappings.normal_mode['gk'] = lvim.lsp.buffer_mappings.normal_mode['K']
--- lvim.lsp.buffer_mappings.normal_mode['K'] = nil
--- lvim.keys.normal_mode['K'] = "<Cmd>echo Okay!<CR>"
-
--- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
--- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
-
--- -- Use which-key to add extra bindings with the leader-key prefix
--- lvim.builtin.which_key.mappings["W"] = { "<cmd>noautocmd w<cr>", "Save without formatting" }
--- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 
 -- 插件 telescope
 
 
 -- 插件 toggleterm
-lvim.builtin.terminal.open_mapping = "<C-t>"
-require("toggleterm").setup{
-    direction = "horizontal"
-}
-
-
-
-lvim.builtin.alpha.active = true
-lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
-
--- Automatically install missing parsers when entering buffer
-lvim.builtin.treesitter.auto_install = true
-

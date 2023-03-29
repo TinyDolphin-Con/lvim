@@ -10,4 +10,11 @@ lvim.plugins = {
   --   end
   -- }
 
+  -- hop Buffer 内快速移动
+  {
+    "phaazon/hop.nvim",
+    event = "BufRead",
+    config = function() require("hop").setup() end,
+  },
+
 }

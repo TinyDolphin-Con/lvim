@@ -1,13 +1,14 @@
 
--- require("user.alpha").config()
+require("built-in.alpha").load()
 
-require("built-in.statusline")
+require("built-in.statusline").load()
 
--- require("user.treesitter").config()
+require("built-in.treesitter").load()
+
+require("plugins.plugins-setup")
 
 -- require("user.lsp").config()
 
--- require("user.plugins").config()
 
 -- require("user.keybindings").config()
 
