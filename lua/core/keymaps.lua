@@ -138,7 +138,7 @@ lvim.builtin.which_key.mappings["f"] = {
   o = { "<Cmd>Telescope oldfiles<CR>", "oldfiles" },
   b = { "<Cmd>Telescope buffers<CR>", "buffers" },
   l = { "<Cmd>Telescope live_grep_args<CR>", "live_grep_args" },
-  g = { "<Cmd>Telescope grep_string<CR>", "grep_string" },
+  L = { "<Cmd>Telescope grep_string<CR>", "grep_string" },
   r = { "<Cmd>Telescope resume<CR>", "resume" },
   -- 列出所有函数、变量等
   t = { "<Cmd>Telescope treesitter<CR>", "treesitter" },
