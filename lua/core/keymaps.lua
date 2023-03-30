@@ -175,6 +175,18 @@ lvim.builtin.which_key.mappings["S"] = {
   Q = { "<cmd>lua require('persistence').stop()<cr>", "Quit without saving session" },
 }
 
+-- 插件：akinsho/toggleterm.nvim 智能终端
+vim.cmd([[
+  autocmd TermEnter term://*toggleterm#*
+      \ tnoremap <silent><C-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
+]])
+-- 开启终端
+-- 支持多终端：2<C-t> 即打开终端 2
+keymap('n', '<C-t>', '<Cmd>exe v:count1 . "ToggleTerm"<CR><CR>', { noremap = true, silent = true })
+-- 退出终端模式
+keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
+keymap('t', 'Q', '<Cmd>close<CR>', { noremap = true, silent = true })
+
 -- 其他
 lvim.builtin.which_key.mappings["a"] = {
 		name = "Application",
