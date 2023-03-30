@@ -88,25 +88,97 @@ keymap({'n', 'x'}, ',,', '<Cmd>HopChar2<CR>', { noremap = true, silent = true })
 
 
 -- 插件 LSP Bindings
+-- 预览跳转定义位置
+keymap({"n", "x"}, "gpd", "<Cmd>lua require('goto-preview').goto_preview_definition()<CR>", { noremap = true, silent = true })
+-- 预览跳转引用位置
+keymap({"n", "x"}, "gpr", "<Cmd>lua require('goto-preview').goto_preview_implementation()<CR>", { noremap = true, silent = true })
+-- 快速跳转
+keymap({"n", "x"}, "gd", "<cmd>TroubleToggle lsp_definitions<cr>", { noremap = true, silent = true })
+keymap({"n", "x"}, "gr", "<cmd>TroubleToggle lsp_references<cr>", { noremap = true, silent = true })
+keymap({"n", "x"}, "gi", "<cmd>TroubleToggle lsp_implementations<cr>", { noremap = true, silent = true })
+keymap({"n", "x"}, "gt", "<cmd>TroubleToggle lsp_type_definitions<cr>", { noremap = true, silent = true })
+
+-- 插件 folke/trouble.nvim 漂亮的列表，显示诊断、引用、搜索结果、快速修复和定位列表↵
+lvim.builtin.which_key.mappings["t"] = {
+  name = "trouble",
+  -- d = { "<cmd>TroubleToggle lsp_definitions<cr>", "definitions" },
+  -- r = { "<cmd>TroubleToggle lsp_references<cr>", "references" },
+  -- i = { "<cmd>TroubleToggle lsp_implementations<cr>", "implementations" },
+  -- t = { "<cmd>TroubleToggle lsp_type_definitions<cr>", "type_definitions" },
+  T = { "<cmd>TroubleToggle<cr>", "trouble" },
+  W = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "workspace" },
+  D = { "<cmd>TroubleToggle document_diagnostics<cr>", "document" },
+  Q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
+  L = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
+}
 
 -- 插件 vim-bookmarks 书签
 -- mm 当前行添加/删除书签
 -- mi 当前行添加/编辑/删除带注释的书签
 -- mn 跳转到缓冲区的下一个书签
+-- mp 跳转到缓冲区的上一个书签
 -- ma 显示所有书签
 -- mc 仅删除当前缓冲区的书签
 -- mx 清除所有缓冲区的书签
---
-
+lvim.builtin.which_key.mappings["m"] = {
+  name = "bookmarks",
+  m = { "<Cmd>BookmarkToggle<CR>", "BookmarkToggle" },
+  i = { "<Cmd>BookmarkAnnotate<CR>", "BookmarkAnnotate" },
+  n = { "<Cmd>BookmarkNext<CR>", "BookmarkNext" },
+  p = { "<Cmd>BookmarkPrev<CR>", "BookmarkPrev" },
+  a = { "<Cmd>BookmarkShowAll<CR>", "BookmarkShowAll" },
+  c = { "<Cmd>BookmarkClear<CR>", "BookmarkClear" },
+  x = { "<Cmd>BookmarkClearAll<CR>", "BookmarkClearAll" },
+}
 
 -- 插件 telescope 强大搜索工具
-
+lvim.builtin.which_key.mappings["f"] = {
+  name = "telescope",
+  f = { "<Cmd>Telescope git_files show_untracked=true<CR>", "git_files" },
+  o = { "<Cmd>Telescope oldfiles<CR>", "oldfiles" },
+  b = { "<Cmd>Telescope buffers<CR>", "buffers" },
+  l = { "<Cmd>Telescope live_grep_args<CR>", "live_grep_args" },
+  g = { "<Cmd>Telescope grep_string<CR>", "grep_string" },
+  r = { "<Cmd>Telescope resume<CR>", "resume" },
+  -- 列出所有函数、变量等
+  t = { "<Cmd>Telescope treesitter<CR>", "treesitter" },
+  -- git 相关搜索
+  g = {
+    name = "git",
+    c = { "<Cmd>Telescope git_commits<CR>", "git_commits" },
+    s = { "<Cmd>Telescope git_status<CR>", "git_status" },
+    S = { "<Cmd>Telescope git_stash<CR>", "git_stash" },
+  },
+  -- 书签相关搜索
+  m = {
+    name = "bookmarks",
+    a = { "<Cmd>Telescope vim_bookmarks current_file<CR>", "current_file's bookmarks" },
+    A = { "<Cmd>Telescope vim_bookmarks all<CR>", "all bookmarks" },
+  },
+}
 -- 文本搜索（可带搜索参数）
-keymap('n', '<leader>fl', '<Cmd>Telescope live_grep_args<CR>', { noremap = true, silent = true })
+-- keymap('n', '<leader>fl', '<Cmd>Telescope live_grep_args<CR>', { noremap = true, silent = true })
 -- 书签搜索
-keymap('n', '<leader>ml', '<Cmd>Telescope vim_bookmarks current_file<CR>', { noremap = true, silent = true })
-keymap('n', '<leader>ml', '<Cmd>Telescope vim_bookmarks all<CR>', { noremap = true, silent = true })
+-- keymap('n', '<leader>fc', '<Cmd>Telescope vim_bookmarks current_file<CR>', { noremap = true, silent = true })
+-- keymap('n', '<leader>fa', '<Cmd>Telescope vim_bookmarks all<CR>', { noremap = true, silent = true })
 
 
--- 插件 vim-visual-multi 多行编辑
-keymap({'n', 'v'}, '<leader>ma', '<Plug>(VM-Select-All)', { noremap = true, silent = true })
+-- 插件 clangd_extensions.nvim clangd 增强
+-- 快速跳转：头文件和源文件之间
+keymap({'n', 'v'}, '<leader>ch', '<Cmd>ClangdSwitchSourceHeader<CR>', { noremap = true, silent = true })
+
+-- 插件 folke/persistence.nvim 会话session管理
+lvim.builtin.which_key.mappings["S"] = {
+  name = "Session",
+  c = { "<cmd>lua require('persistence').load()<cr>", "Restore last session for current dir" },
+  l = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Restore last session" },
+  Q = { "<cmd>lua require('persistence').stop()<cr>", "Quit without saving session" },
+}
+
+-- 其他
+lvim.builtin.which_key.mappings["a"] = {
+		name = "Application",
+		e = { "<CMD>NvimTreeFindFile<CR>", "Explorer" },
+		o = { "<CMD>SymbolsOutline<CR>", "Outline" },
+		t = { "<CMD>TodoTrouble<CR>", "TODO" },
+}

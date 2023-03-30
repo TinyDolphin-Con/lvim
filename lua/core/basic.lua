@@ -244,3 +244,9 @@ lvim.format_on_save = {
   pattern = "*.lua",
   timeout = 1000,
 }
+
+-- 自动安装相关语法的高亮显示
+lvim.builtin.treesitter.auto_install = true
+
+-- cmp 自动完成时，让用户选择是否使用预测内容
+-- lvim.builtin.cmp.confirm_opts.select = true
