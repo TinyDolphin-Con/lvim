@@ -16,7 +16,7 @@ _M.load = function()
   table.insert(
     lvim.builtin.alpha.dashboard.section.buttons.entries,
     99,
-    {"l", "  Restore Session", "<CMD>lua require('persistence').load({ last = true })<CR>"}
+    {"s", "  Restore Session", "<CMD>lua require('persistence').load({ last = true })<CR>"}
   )
 end
 
