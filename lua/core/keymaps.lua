@@ -1,27 +1,92 @@
 -- keymappings <https://www.lunarvim.org/docs/configuration/keybindings>
-lvim.leader = "space"
 
 -- 启用键盘映射
 local keymap = vim.keymap.set
 
--- 正常模式 normal
+-- 设置 leader 键
+vim.g.mapleader = " "
+
+----------------------------
+----- 正常模式 normal ------
+----------------------------
 -- 快速保存
-lvim.keys.normal_mode["W"] = ":w<CR>"
+keymap('n', 'W', ':w<CR>', { noremap = true, silent = true })
 -- 快速退出
-lvim.keys.normal_mode["Q"] = ":q<CR>"
+keymap('n', 'Q', ':q<CR>', { noremap = true, silent = true })
 -- 快速保存并退出
-lvim.keys.normal_mode["qw"] = ":wq<CR>"
+keymap('n', 'qw', ':wq<CR>', { noremap = true, silent = true })
 -- 选中全文（普通模式、可视模式和选择模式）
-lvim.keys.normal_mode["VV"] = "<Esc>gg0vG$<CR>"
+keymap({'n', 'x'}, 'VV', '<Esc>gg0vG$<CR>', { noremap = true, silent = true })
 -- 取消搜索高亮
-lvim.keys.normal_mode["<leader><CR>"] = ":nohlsearch<CR>"
+keymap({'n', 'x'}, '<leader><CR>', ':nohlsearch<CR>', { noremap = true, silent = true })
 
 -- 向下翻转半页并居中
-lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"
-lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"
+keymap('n', '<C-d>', '<C-d>zz', { noremap = true, silent = true })
+keymap('n', '<C-u>', '<C-u>zz', { noremap = true, silent = true })
+-- 搜索并居中
+keymap({'n', 'x'}, 'n', 'nzz', { noremap = true, silent = true })
+keymap({'n', 'x'}, 'N', 'Nzz', { noremap = true, silent = true })
 
 -- 切换粘贴模式
-lvim.keys.normal_mode["SP"] = {":setlocal paste!<CR>"}
+keymap('n', '<leader>P', ':setlocal paste!<CR>', { noremap = true, silent = true, desc = 'Switch paste' })
+
+-- 切分分屏：右左上下
+keymap('n', 'sl', ':set splitright<CR>:vsplit<CR>', { noremap = true, silent = true, desc = 'Split right' })
+keymap('n', 'sh', ':set nosplitright<CR>:vsplit<CR>', { noremap = true, silent = true, desc = 'Split left' })
+keymap('n', 'sk', ':set nosplitbelow<CR>:split<CR>', { noremap = true, silent = true, desc = 'Split top' })
+keymap('n', 'sj', ':set splitbelow<CR>:split<CR>', { noremap = true, silent = true, desc = 'Split below' })
+-- 调整分屏大小
+keymap('n', 'sL', ':vertical resize-5<CR>', { noremap = true, silent = true, desc = 'Resize right' })
+keymap('n', 'sH', ':vertical resize+5<CR>', { noremap = true, silent = true, desc = 'Resize left' })
+keymap('n', 'sK', ':res +5<CR>', { noremap = true, silent = true, desc = 'Resize top' })
+keymap('n', 'sJ', ':res -5<CR>', { noremap = true, silent = true, desc = 'Resize below' })
+
+-- 移动一行文字
+keymap('n', '<C-S-Up>', 'mz:m-2<CR>`z', { noremap = true, silent = true })
+keymap('v', '<C-S-Up>', ':m\'<-2<CR>`>my`<mzgv`yo`z', { noremap = true, silent = true })
+keymap('n', '<C-S-Down>', 'mz:m+<CR>`z', { noremap = true, silent = true })
+keymap('v', '<C-S-Down>', ':m\'>+<CR>`<my`>mzgv`yo`z', { noremap = true, silent = true })
+
+-- 移动到行首行尾
+keymap({'n', 'x'}, 'H', '^', { noremap = true, silent = true })
+keymap({'n', 'x'}, 'L', '$', { noremap = true, silent = true })
+
+----------------------------
+----- 插入模式 insert ------
+----------------------------
+-- 移动光标
+keymap('i', '<C-k>', '<Up>', { noremap = true, silent = true })
+keymap('i', '<C-j>', '<Down>', { noremap = true, silent = true })
+keymap('i', '<C-h>', '<Left>', { noremap = true, silent = true })
+keymap('i', '<C-l>', '<Right>', { noremap = true, silent = true })
+-- 向后删除
+keymap('i', '<C-d>', '<Delete>', { noremap = true, silent = true })
+
+-- 插入模式，快速打印当前时间
+keymap('i', 'xdate', [[<C-r>=strftime('%Y-%m-%d %H:%M:%S')<CR>]], { noremap = true, silent = true })
+
+
+----------------------------
+----- 可视模式 -------------
+----------------------------
+-- 可视模式下，针对选中内容，增加括号
+keymap('v', '(', '<Esc>`>a)<Esc>`<i(<Esc>', { noremap = true, silent = true })
+keymap('v', '[', '<Esc>`>a]<Esc>`<i[<Esc>', { noremap = true, silent = true })
+keymap('v', '{', '<Esc>`>a}<Esc>`<i{<Esc>', { noremap = true, silent = true })
+keymap('v', '"', '<Esc>`>a"<Esc>`<i"<Esc>', { noremap = true, silent = true })
+keymap('v', '`', '<Esc>`>a`<Esc>`<i`<Esc>', { noremap = true, silent = true })
+keymap('v', '\'', '<Esc>`>a\'<Esc>`<i\'<Esc>', { noremap = true, silent = true })
+
+----------------------------
+----- 命令行模式 -----------
+----------------------------
+keymap('c', '<C-a>', '<Home>', { noremap = true, silent = true })
+keymap('c', '<C-e>', '<End>', { noremap = true, silent = true })
+
+
+----------------------------
+----- 其他 -----------------
+----------------------------
 
 -- 开启拼写检查
 -- lvim.keys.normal_mode["SS"] = ":setlocal spell!<CR>"
@@ -31,47 +96,7 @@ lvim.keys.normal_mode["SP"] = {":setlocal paste!<CR>"}
 -- zg ：添加用户拼写
 -- zw ：删除用户拼写
 
--- 切分分屏：右左上下
-lvim.keys.normal_mode["sl"] = ":set splitright<CR>:vsplit<CR>"
-lvim.keys.normal_mode["sh"] = ":set nosplitright<CR>:vsplit<CR>"
-lvim.keys.normal_mode["sk"] = ":set nosplitbelow<CR>:split<CR>"
-lvim.keys.normal_mode["sj"] = ":set splitbelow<CR>:split<CR>"
--- 调整分屏大小
-lvim.keys.normal_mode["SL"] = ":vertical resize-5<CR>"
-lvim.keys.normal_mode["SH"] = ":vertical resize+5<CR>"
-lvim.keys.normal_mode["SK"] = ":res +5<CR>"
-lvim.keys.normal_mode["SJ"] = ":res -5<CR>"
 
-
--- 插入模式 insert
--- 移动光标
-lvim.keys.insert_mode["<C-k>"] = "<Up>"
-lvim.keys.insert_mode["<C-J>"] = "<Down>"
-lvim.keys.insert_mode["<C-h>"] = "<Left>"
-lvim.keys.insert_mode["<C-l>"] = "<Right>"
--- 向后删除
-lvim.keys.insert_mode["<C-d>"] = "<Delete>"
-
--- 插入模式，快速打印当前时间（暂时失效）
--- keymap('i', 'xdate', [[<C-r>=strftime('%Y-%m-%d %H:%M:%S')<CR>]], { noremap = true, silent = true })
-
-
--- 可视模式
--- 可视模式下，针对选中内容，增加括号
-lvim.keys.visual_mode["("] = "<Esc>`>a)<Esc>`<i(<Esc><CR>"
-lvim.keys.visual_mode["["] = "<Esc>`>a]<Esc>`<i[<Esc><CR>"
-lvim.keys.visual_mode["{"] = "<Esc>`>a}<Esc>`<i{<Esc><CR>"
-lvim.keys.visual_mode["'"] = "<Esc>`>a'<Esc>`<i'<Esc>"
-lvim.keys.visual_mode["`"] = "<Esc>`>a`<Esc>`<i`<Esc>"
-lvim.keys.visual_mode["\""] = "<Esc>`>a\"<Esc>`<i\"<Esc>"
-
-
--- 命令行模式
-keymap('c', '<C-a>', '<Home>', { noremap = true, silent = true })
-keymap('c', '<C-e>', '<End>', { noremap = true, silent = true })
-
-
--- 其他
 -- 折叠快捷键
 -- zf{motion} ：将指定动作的范围进行折叠（e.g. 将整个段落进行折叠 zfap）
 -- zd ：删除折叠
@@ -82,14 +107,17 @@ keymap('c', '<C-e>', '<End>', { noremap = true, silent = true })
 -- zR ：打开所有折叠
 -- zM ：关闭所有折叠
 
+----------------------------
+----- 插件 -----------------
+----------------------------
 -- 插件 hop.nvim 窗口内快速跳转
-lvim.keys.normal_mode[","] = "<Cmd>HopChar1<CR>"
-lvim.keys.normal_mode[",,"] = "<Cmd>HopChar2<CR>"
+keymap('n', ',', '<Cmd>HopChar1<CR>', { noremap = true, silent = true, desc = 'HopChar1' })
+keymap('n', ',,', '<Cmd>HopChar2<CR>', { noremap = true, silent = true, desc = 'HopChar2' })
 
 -- 插件 s1n7ax/nvim-window-picker 窗口选择↵
 local picker = require('window-picker')
 -- 快速选择窗口
-keymap('n', 'gw', function()
+keymap('n', 'sw', function()
   local picked_window_id = picker.pick_window() or vim.api.nvim_get_current_win()
   vim.api.nvim_set_current_win(picked_window_id)
 end, { noremap = true, silent = true, desc = "Pick a window" })
@@ -100,7 +128,7 @@ local function swap_windows()
   vim.api.nvim_win_set_buf(window, 0)
   vim.api.nvim_win_set_buf(0, target_buffer)
 end
-keymap('n', 'gW', swap_windows, { noremap = true, silent = true, desc = 'Swap windows' })
+keymap('n', 'sW', swap_windows, { noremap = true, silent = true, desc = 'Swap windows' })
 
 -- 插件 LSP Bindings
 -- 预览跳转定义位置
@@ -159,6 +187,7 @@ lvim.builtin.which_key.mappings["f"] = {
   l = { "<Cmd>Telescope live_grep_args<CR>", "live_grep_args" },
   L = { "<Cmd>Telescope grep_string<CR>", "grep_string" },
   r = { "<Cmd>Telescope resume<CR>", "resume" },
+  c = { "<Cmd>Telescope current_buffer_fuzzy_find<CR>", "current_buffer_fuzzy_find" },
   -- 列出所有函数、变量等
   t = { "<Cmd>Telescope treesitter<CR>", "treesitter" },
   -- git 相关搜索

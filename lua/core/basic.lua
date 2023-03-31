@@ -188,8 +188,8 @@ opt.pumheight = 10
 
 -- 普通模式下，按键响应的等待时间（默认 1000）
 opt.timeoutlen = 200
+-- opt.ttimeoutlen = 100
 -- 插入模式下，按键响应的等待时间（默认 50）
-opt.ttimeoutlen = 10
 -- 屏幕重绘时间（默认 1000）
 -- opt.redrawtime = 1500
 
