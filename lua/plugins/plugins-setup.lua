@@ -11,33 +11,6 @@ lvim.plugins = {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
   },
-  -- 更漂亮的快速修复窗口
-  {
-    "kevinhwang91/nvim-bqf",
-    event = { "BufRead", "BufNew" },
-    config = function()
-      require("bqf").setup({
-        auto_enable = true,
-        preview = {
-          win_height = 12,
-          win_vheight = 12,
-          delay_syntax = 80,
-          border_chars = { "┃", "┃", "━", "━", "┏", "┓", "┗", "┛", "█" },
-        },
-        func_map = {
-          vsplit = "",
-          ptogglemode = "z,",
-          stoggleup = "",
-        },
-        filter = {
-          fzf = {
-            action_for = { ["ctrl-s"] = "split" },
-            extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "> " },
-          },
-        },
-      })
-    end,
-  },
   -- 屏幕滚动
   {
     "karb94/neoscroll.nvim",
@@ -57,6 +30,14 @@ lvim.plugins = {
         post_hook = nil,              -- Function to run after the scrolling animation ends
       })
     end
+  },
+  -- 窗口选择
+  {
+    "s1n7ax/nvim-window-picker",
+    tag = "1.*",
+    config = function()
+      require("window-picker").setup({})
+    end,
   },
   -- 高亮显示并支持搜索 TODO
   {

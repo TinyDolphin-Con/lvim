@@ -21,7 +21,7 @@ lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"
 lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"
 
 -- 切换粘贴模式
-lvim.keys.normal_mode["SP"] = ":setlocal paste!<CR>"
+lvim.keys.normal_mode["SP"] = {":setlocal paste!<CR>"}
 
 -- 开启拼写检查
 -- lvim.keys.normal_mode["SS"] = ":setlocal spell!<CR>"
@@ -83,9 +83,24 @@ keymap('c', '<C-e>', '<End>', { noremap = true, silent = true })
 -- zM ：关闭所有折叠
 
 -- 插件 hop.nvim 窗口内快速跳转
-keymap({'n', 'x'}, ',', '<Cmd>HopChar1<CR>', { noremap = true, silent = true })
-keymap({'n', 'x'}, ',,', '<Cmd>HopChar2<CR>', { noremap = true, silent = true })
+lvim.keys.normal_mode[","] = "<Cmd>HopChar1<CR>"
+lvim.keys.normal_mode[",,"] = "<Cmd>HopChar2<CR>"
 
+-- 插件 s1n7ax/nvim-window-picker 窗口选择↵
+local picker = require('window-picker')
+-- 快速选择窗口
+keymap('n', 'gw', function()
+  local picked_window_id = picker.pick_window() or vim.api.nvim_get_current_win()
+  vim.api.nvim_set_current_win(picked_window_id)
+end, { noremap = true, silent = true, desc = "Pick a window" })
+-- -- 交换两个窗口
+local function swap_windows()
+  local window = picker.pick_window()
+  local target_buffer = vim.fn.winbufnr(window)
+  vim.api.nvim_win_set_buf(window, 0)
+  vim.api.nvim_win_set_buf(0, target_buffer)
+end
+keymap('n', 'gW', swap_windows, { noremap = true, silent = true, desc = 'Swap windows' })
 
 -- 插件 LSP Bindings
 -- 预览跳转定义位置
@@ -165,7 +180,7 @@ lvim.builtin.which_key.mappings["f"] = {
 
 -- 插件 clangd_extensions.nvim clangd 增强
 -- 快速跳转：头文件和源文件之间
-keymap({'n', 'v'}, '<leader>ch', '<Cmd>ClangdSwitchSourceHeader<CR>', { noremap = true, silent = true })
+keymap({'n', 'v'}, 'ch', '<Cmd>ClangdSwitchSourceHeader<CR>', { noremap = true, silent = true })
 
 -- 插件 folke/persistence.nvim 会话session管理
 lvim.builtin.which_key.mappings["S"] = {
