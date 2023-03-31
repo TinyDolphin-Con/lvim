@@ -15,6 +15,8 @@ keymap('n', 'W', ':w<CR>', { noremap = true, silent = true })
 keymap('n', 'Q', ':q<CR>', { noremap = true, silent = true })
 -- 快速保存并退出
 keymap('n', 'qw', ':wq<CR>', { noremap = true, silent = true })
+-- 快速保存并退出所有窗口
+keymap('n', 'qa', ':wqa<CR>', { noremap = true, silent = true })
 -- 选中全文（普通模式、可视模式和选择模式）
 keymap({'n', 'x'}, 'VV', '<Esc>gg0vG$<CR>', { noremap = true, silent = true })
 -- 取消搜索高亮
