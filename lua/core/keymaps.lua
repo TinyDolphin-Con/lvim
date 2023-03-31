@@ -104,14 +104,18 @@ keymap('n', 'gW', swap_windows, { noremap = true, silent = true, desc = 'Swap wi
 
 -- 插件 LSP Bindings
 -- 预览跳转定义位置
-keymap({"n", "x"}, "gpd", "<Cmd>lua require('goto-preview').goto_preview_definition()<CR>", { noremap = true, silent = true })
+keymap({"n", "x"}, "gpd", "<Cmd>lua require('goto-preview').goto_preview_definition()<CR>", { noremap = true, silent = true, desc = "Preview definition" })
 -- 预览跳转引用位置
-keymap({"n", "x"}, "gpr", "<Cmd>lua require('goto-preview').goto_preview_implementation()<CR>", { noremap = true, silent = true })
+keymap({"n", "x"}, "gpr", "<Cmd>lua require('goto-preview').goto_preview_implementation()<CR>", { noremap = true, silent = true, desc = "Preview implementation" })
 -- 快速跳转
-keymap({"n", "x"}, "gd", "<cmd>TroubleToggle lsp_definitions<cr>", { noremap = true, silent = true })
-keymap({"n", "x"}, "gr", "<cmd>TroubleToggle lsp_references<cr>", { noremap = true, silent = true })
-keymap({"n", "x"}, "gi", "<cmd>TroubleToggle lsp_implementations<cr>", { noremap = true, silent = true })
-keymap({"n", "x"}, "gt", "<cmd>TroubleToggle lsp_type_definitions<cr>", { noremap = true, silent = true })
+keymap({"n", "x"}, "gd", "<cmd>TroubleToggle lsp_definitions<cr>", { noremap = true, silent = true, desc = "Lsp definitions" })
+keymap({"n", "x"}, "gr", "<cmd>TroubleToggle lsp_references<cr>", { noremap = true, silent = true, desc = "Lsp references" })
+keymap({"n", "x"}, "gi", "<cmd>TroubleToggle lsp_implementations<cr>", { noremap = true, silent = true, desc = "Lsp implementations" })
+keymap({"n", "x"}, "gt", "<cmd>TroubleToggle lsp_type_definitions<cr>", { noremap = true, silent = true, desc = "Lsp type_definitions" })
+
+-- 插件 clangd_extensions.nvim clangd 增强
+-- 快速跳转：头文件和源文件之间
+keymap({'n', 'v'}, 'gsh', '<Cmd>ClangdSwitchSourceHeader<CR>', { noremap = true, silent = true, desc = "Switch Source Header" })
 
 -- 插件 folke/trouble.nvim 漂亮的列表，显示诊断、引用、搜索结果、快速修复和定位列表↵
 lvim.builtin.which_key.mappings["t"] = {
@@ -177,11 +181,6 @@ lvim.builtin.which_key.mappings["f"] = {
 -- keymap('n', '<leader>fc', '<Cmd>Telescope vim_bookmarks current_file<CR>', { noremap = true, silent = true })
 -- keymap('n', '<leader>fa', '<Cmd>Telescope vim_bookmarks all<CR>', { noremap = true, silent = true })
 
-
--- 插件 clangd_extensions.nvim clangd 增强
--- 快速跳转：头文件和源文件之间
-keymap({'n', 'v'}, 'ch', '<Cmd>ClangdSwitchSourceHeader<CR>', { noremap = true, silent = true })
-
 -- 插件 folke/persistence.nvim 会话session管理
 lvim.builtin.which_key.mappings["S"] = {
   name = "Session",
@@ -197,7 +196,7 @@ vim.cmd([[
 ]])
 -- 开启终端
 -- 支持多终端：2<C-t> 即打开终端 2
-keymap('n', '<C-t>', '<Cmd>exe v:count1 . "ToggleTerm"<CR><CR>', { noremap = true, silent = true })
+keymap('n', '<C-t>', '<Cmd>exe v:count1 . "ToggleTerm"<CR><CR>', { noremap = true, silent = true, desc = "ToggleTerm" })
 -- 退出终端模式
 keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
 keymap('t', 'Q', '<Cmd>close<CR>', { noremap = true, silent = true })
