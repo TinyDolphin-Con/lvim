@@ -13,9 +13,11 @@ _M.load = function()
 		},
 	}
   -- 设置菜单：添加 persistence 插件（报错）
-  -- lvim.builtin.alpha.dashboard.section.buttons.val = {
-  --   dashboard.button("l", "  Restore Session", "<CMD>lua require('persistence').load({ last = true })<CR>"),
-  -- }
+  table.insert(
+    lvim.builtin.alpha.dashboard.section.buttons.entries,
+    99,
+    {"l", "  Restore Session", "<CMD>lua require('persistence').load({ last = true })<CR>"}
+  )
 end
 
 _M.dashboard = function()
