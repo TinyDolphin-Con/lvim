@@ -206,6 +206,10 @@ lvim.builtin.which_key.mappings["f"] = {
     A = { "<Cmd>Telescope vim_bookmarks all<CR>", "all bookmarks" },
   },
 }
+-- 配合 nvim-tree 快捷键 ~/.local/share/lunarvim/lvim/lua/lvim/core/nvimtree.lua
+-- gtf : 当前文件夹下搜索文件
+-- gtg : 当前文件夹下搜索内容
+
 -- 文本搜索（可带搜索参数）
 -- keymap('n', '<leader>fl', '<Cmd>Telescope live_grep_args<CR>', { noremap = true, silent = true })
 -- 书签搜索

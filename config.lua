@@ -5,6 +5,8 @@ require("built-in.statusline").load()
 
 require("built-in.treesitter").load()
 
+require("built-in.gitsigns").load()
+
 require("plugins.plugins-setup")
 
 -- require("user.lsp").config()
