@@ -136,7 +136,7 @@ opt.foldmethod = "indent"
 -- 设置折叠表达式
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- 设置打开文件时默认的折叠级别
-opt.foldlevelstart = 0
+opt.foldlevelstart = 99
 -- 指定折叠级别的最大深度
 opt.foldlevel = 99
 -- 设置代码折叠的最小行数
