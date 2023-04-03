@@ -5,7 +5,7 @@ local opt = vim.opt
 opt.history = 1000
 
 -- 设置键盘启用情况
-opt.mouse="a"
+opt.mouse = "a"
 
 -- 设置系统粘贴板
 opt.clipboard:append("unnamedplus")
@@ -47,20 +47,20 @@ opt.wildmenu = true
 opt.wildmode = "list:longest,full"
 -- 在匹配列表中忽略指定类型的文件
 opt.wildignore = {
-  "*.aux,*.out,*.toc",
-  "*.o,*.obj,*.dll,*.jar,*.pyc,__pycache__,*.rbc,*.class",
-  -- media
-  "*.ai,*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png,*.psd,*.webp",
-  "*.avi,*.m4a,*.mp3,*.oga,*.ogg,*.wav,*.webm",
-  "*.eot,*.otf,*.ttf,*.woff",
-  "*.doc,*.pdf",
-  -- archives
-  "*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz",
-  -- temp/system
-  "*.*~,*~ ",
-  "*.swp,.lock,.DS_Store,._*,tags.lock",
-  -- version control
-  ".git,.svn",
+	"*.aux,*.out,*.toc",
+	"*.o,*.obj,*.dll,*.jar,*.pyc,__pycache__,*.rbc,*.class",
+	-- media
+	"*.ai,*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png,*.psd,*.webp",
+	"*.avi,*.m4a,*.mp3,*.oga,*.ogg,*.wav,*.webm",
+	"*.eot,*.otf,*.ttf,*.woff",
+	"*.doc,*.pdf",
+	-- archives
+	"*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz",
+	-- temp/system
+	"*.*~,*~ ",
+	"*.swp,.lock,.DS_Store,._*,tags.lock",
+	-- version control
+	".git,.svn",
 }
 
 -- 左移键回到上一行的行尾，在行尾用右移键能够到下一行的开头
@@ -75,7 +75,7 @@ opt.ignorecase = true
 opt.smartcase = true
 
 -- 在执行宏命令时，不进行显示重绘；在宏命令执行完成后，一次性重绘，以便提高性能
-opt.lazyredraw = true
+-- opt.lazyredraw = true
 
 -- 高亮显示匹配的括号
 opt.showmatch = true
@@ -187,14 +187,16 @@ opt.completeopt = { "menuone", "noselect" }
 opt.pumheight = 10
 
 -- 普通模式下，按键响应的等待时间（默认 1000）
-opt.timeoutlen = 200
--- opt.ttimeoutlen = 100
+opt.timeoutlen = 100
 -- 插入模式下，按键响应的等待时间（默认 50）
+opt.ttimeoutlen = 100
 -- 屏幕重绘时间（默认 1000）
--- opt.redrawtime = 1500
+opt.redrawtime = 1500
 
 -- 打开文件时，返回到最后的编辑位置并且居中显示
-vim.cmd([[autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | execute 'silent! ' . line("'\"") . 'foldopen!' | execute 'normal! ' . line("'\"") . 'Gzz' | endif]])
+vim.cmd(
+	[[autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | execute 'silent! ' . line("'\"") . 'foldopen!' | execute 'normal! ' . line("'\"") . 'Gzz' | endif]]
+)
 
 -- 保存时删除末尾空白
 vim.cmd([[
@@ -202,7 +204,8 @@ vim.cmd([[
 ]])
 
 -- 设置光标
-opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
+opt.guicursor =
+	"n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 
 -- 当使用命令行时，总是报告文件有几行被修改过
 opt.report = 0
@@ -218,32 +221,14 @@ vim.cmd([[
   autocmd FileType python syn keyword pythonDecorator True None False self
 ]])
 
-
-
 -- LauraVim 配置
--- 不显示模式（lvim 中不再需要）
-opt.showmode = false
--- 显示标签栏
-opt.showtabline = 2
--- 将标题设置为 titlestring 的值
-opt.title = true
-opt.titlestring = "%<%F%=%l/%L - nvim"
--- 设置 undo 文件的保存路径
-opt.undodir = vim.fn.stdpath "cache" .. "/undo"
-
-
 -- general
 -- 主题
 -- lvim.colorscheme = "lunar"
 lvim.colorscheme = "tokyonight"
 -- 透明背景
 lvim.transparent_window = true
+-- 日志级别
 lvim.log.level = "info"
-lvim.format_on_save = {
-  enabled = true,
-  pattern = "*.lua",
-  timeout = 1000,
-}
-
--- 自动安装相关语法的高亮显示
-lvim.builtin.treesitter.auto_install = true
+-- 保存时进行格式化
+lvim.format_on_save = true

@@ -7,6 +7,10 @@ _M.load = function()
   vim.opt.foldtext =
     [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
 
+  -- 自动安装相关语法的高亮显示
+  lvim.builtin.treesitter.auto_install = true
+  lvim.builtin.treesitter.ensure_installed = { "comment", "markdown_inline", "regex" }
+
   -- 设置 treesitter
   lvim.builtin.treesitter.matchup.enable = true
   lvim.builtin.treesitter.autotag.enable = true
