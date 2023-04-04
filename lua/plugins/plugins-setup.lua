@@ -210,6 +210,7 @@ lvim.plugins = {
 			})
 		end,
 	},
+	-- goto 预览窗口
 	{
 		"rmagatti/goto-preview",
 		config = function()
