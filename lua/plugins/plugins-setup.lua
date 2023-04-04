@@ -35,7 +35,18 @@ lvim.plugins = {
 		"s1n7ax/nvim-window-picker",
 		tag = "1.*",
 		config = function()
-			require("window-picker").setup({})
+			require("window-picker").setup({
+				filter_rules = {
+					-- filter using buffer options
+					bo = {
+						-- if the file type is one of following, the window will be ignored
+						filetype = { "neo-tree", "neo-tree-popup", "notify", "quickfix" },
+						-- if the buffer type is one of following, the window will be ignored
+						buftype = { "terminal" },
+					},
+				},
+				other_win_hl_color = "#e35e4f",
+			})
 		end,
 	},
 	-- 高亮显示并支持搜索 TODO
@@ -44,6 +55,20 @@ lvim.plugins = {
 		event = "BufRead",
 		config = function()
 			require("todo-comments").setup()
+		end,
+	},
+	-- 当前单词下添加下划线
+	{
+		"itchyny/vim-cursorword",
+		event = { "BufEnter", "BufNewFile" },
+		config = function()
+			vim.api.nvim_command("augroup user_plugin_cursorword")
+			vim.api.nvim_command("autocmd!")
+			vim.api.nvim_command("autocmd FileType NvimTree,lspsagafinder,dashboard,vista let b:cursorword = 0")
+			vim.api.nvim_command("autocmd WinEnter * if &diff || &pvw | let b:cursorword = 0 | endif")
+			vim.api.nvim_command("autocmd InsertEnter * let b:cursorword = 0")
+			vim.api.nvim_command("autocmd InsertLeave * let b:cursorword = 1")
+			vim.api.nvim_command("augroup END")
 		end,
 	},
 
@@ -225,6 +250,11 @@ lvim.plugins = {
 	---------------------------
 	------ Git ---------------
 	---------------------------
+	-- git diff 差异视图（暂未配置）
+	-- {
+	-- 	"sindrets/diffview.nvim",
+	-- 	event = "BufRead",
+	-- },
 
 	---------------------------
 	------ 其他 ---------------

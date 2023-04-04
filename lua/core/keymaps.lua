@@ -109,6 +109,14 @@ keymap("c", "<C-e>", "<End>", { noremap = true })
 -- zR ：打开所有折叠
 -- zM ：关闭所有折叠
 
+-- 移除 lvim 自带的上下移动一行的操作
+lvim.keys.normal_mode["<A-j>"] = false
+lvim.keys.normal_mode["<A-k>"] = false
+lvim.keys.insert_mode["<A-j>"] = false
+lvim.keys.insert_mode["<A-k>"] = false
+lvim.keys.visual_block_mode["<A-j>"] = false
+lvim.keys.visual_block_mode["<A-k>"] = false
+
 ----------------------------
 ----- 插件 -----------------
 ----------------------------
@@ -189,11 +197,11 @@ lvim.builtin.which_key.mappings["t"] = {
 	-- r = { "<cmd>TroubleToggle lsp_references<cr>", "references" },
 	-- i = { "<cmd>TroubleToggle lsp_implementations<cr>", "implementations" },
 	-- t = { "<cmd>TroubleToggle lsp_type_definitions<cr>", "type_definitions" },
-	T = { "<cmd>TroubleToggle<cr>", "trouble" },
-	W = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "workspace" },
-	D = { "<cmd>TroubleToggle document_diagnostics<cr>", "document" },
-	Q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
-	L = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
+	t = { "<cmd>TroubleToggle<cr>", "trouble" },
+	w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "workspace" },
+	d = { "<cmd>TroubleToggle document_diagnostics<cr>", "document" },
+	q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
+	l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
 }
 
 -- 插件 vim-bookmarks 书签
