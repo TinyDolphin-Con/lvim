@@ -109,6 +109,8 @@ keymap("c", "<C-e>", "<End>", { noremap = true })
 -- zR ：打开所有折叠
 -- zM ：关闭所有折叠
 
+-- 移除不需要的快捷
+lvim.keys.normal_mode["x"] = false
 -- 移除 lvim 自带的上下移动一行的操作
 lvim.keys.normal_mode["<A-j>"] = false
 lvim.keys.normal_mode["<A-k>"] = false
