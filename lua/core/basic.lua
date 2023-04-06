@@ -187,9 +187,9 @@ opt.completeopt = { "menuone", "noselect" }
 opt.pumheight = 10
 
 -- 普通模式下，按键响应的等待时间（默认 1000）
-opt.timeoutlen = 100
+opt.timeoutlen = 300
 -- 插入模式下，按键响应的等待时间（默认 50）
-opt.ttimeoutlen = 100
+opt.ttimeoutlen = 200
 -- 屏幕重绘时间（默认 1000）
 opt.redrawtime = 1500
 
