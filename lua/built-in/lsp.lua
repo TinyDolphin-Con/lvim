@@ -25,7 +25,7 @@ _M.load = function()
 	require("lvim.lsp.null-ls.formatters").setup({
 		{ filetypes = { "cpp" }, command = "clang_format" },
 		{ filetypes = { "sh" }, command = "shfmt", extra_args = { "-i", "2" } },
-		{ filetypes = { "cpp" }, command = "stylua" },
+		{ filetypes = { "lua" }, command = "stylua" },
 		{ filetypes = { "cmake" }, command = "cmake_format" },
 		{ filetypes = { "go" }, command = "gofmt" },
 		{
@@ -40,3 +40,4 @@ _M.load = function()
 end
 
 return _M
+

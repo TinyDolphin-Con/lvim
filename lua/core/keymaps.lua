@@ -29,6 +29,10 @@ keymap("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
 keymap({ "n", "x" }, "n", "nzz", { noremap = true, silent = true })
 keymap({ "n", "x" }, "N", "Nzz", { noremap = true, silent = true })
 
+-- 字符替换（建议：使用虚拟替换模式，会按屏幕实际显示宽度来替换字符）
+keymap("n", "r", "gr", { noremap = true, silent = true })
+keymap("n", "R", "gR", { noremap = true, silent = true })
+
 -- 切换粘贴模式
 keymap("n", "<leader>P", ":setlocal paste!<CR>", { noremap = true, silent = true, desc = "Switch paste" })
 
@@ -66,6 +70,10 @@ keymap("i", "<C-h>", "<Left>", { noremap = true })
 keymap("i", "<C-l>", "<Right>", { noremap = true })
 -- 向后删除
 keymap("i", "<C-d>", "<Delete>", { noremap = true })
+-- 向后移动一个单词
+keymap("i", "<C-f>", "<C-o>W", { noremap = true })
+-- 删除当前行
+keymap("i", "<C-q>", "<C-o>dd", { noremap = true })
 
 -- 插入模式，快速打印当前时间
 keymap("i", "xdate", [[<C-r>=strftime('%Y-%m-%d %H:%M:%S')<CR>]], { noremap = true, silent = true })

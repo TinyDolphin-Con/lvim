@@ -32,9 +32,9 @@ vim.cmd([[
 ]])
 
 -- 避免中文窗口操作系统中的乱码字符
-opt.langmenu = "en"
+opt.langmenu = "zh_CN.UTF-8"
 -- 中文文档 cn
-opt.helplang = "en"
+opt.helplang = "cn"
 -- 设置 UTF-8 编码
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
@@ -62,7 +62,10 @@ opt.wildignore = {
 	-- version control
 	".git,.svn",
 }
-
+-- 命令行高度
+opt.cmdheight = 2
+-- 命令行菜单栏选择
+opt.completeopt = "menu,menuone,noselect,noinsert"
 -- 左移键回到上一行的行尾，在行尾用右移键能够到下一行的开头
 opt.whichwrap = "<,>,b,s,h,l"
 
@@ -177,11 +180,6 @@ opt.colorcolumn = "99999"
 -- 显示特殊字符（比如：Tab、空格、行尾空格、换行符等等）
 opt.list = true
 opt.listchars = "tab:→ ,eol:↵,trail:·,extends:↷,precedes:↶"
-
--- 命令行高度
-opt.cmdheight = 2
--- 命令行菜单栏选择
-opt.completeopt = { "menuone", "noselect" }
 
 -- 弹出窗口的高度
 opt.pumheight = 10
