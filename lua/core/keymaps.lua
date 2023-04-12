@@ -236,22 +236,20 @@ lvim.builtin.which_key.mappings["m"] = {
 -- 插件 telescope 强大搜索工具
 lvim.builtin.which_key.mappings["f"] = {
 	name = "telescope",
-	f = { "<Cmd>Telescope find_files<CR>", "git_files" },
-	o = { "<Cmd>Telescope oldfiles<CR>", "oldfiles" },
-	b = { "<Cmd>Telescope buffers<CR>", "buffers" },
-	l = { "<Cmd>Telescope live_grep_args<CR>", "live_grep_args" },
-	L = { "<Cmd>Telescope grep_string<CR>", "grep_string" },
-	r = { "<Cmd>Telescope resume<CR>", "resume" },
-	c = { "<Cmd>Telescope current_buffer_fuzzy_find<CR>", "current_buffer_fuzzy_find" },
-	-- 列出所有函数、变量等
-	t = { "<Cmd>Telescope treesitter<CR>", "treesitter" },
-	-- git 相关搜索
-	g = {
-		name = "git",
-		c = { "<Cmd>Telescope git_commits<CR>", "git_commits" },
-		s = { "<Cmd>Telescope git_status<CR>", "git_status" },
-		S = { "<Cmd>Telescope git_stash<CR>", "git_stash" },
+	f = {
+		function()
+			require("lvim.core.telescope.custom-finders").find_project_files({ previewer = false })
+		end,
+		"Find File",
 	},
+	o = { "<Cmd>Telescope oldfiles previewer=false<CR>", "Find Recent File" },
+	b = { "<Cmd>Telescope buffers previewer=false<CR>", "Find Buffers" },
+	l = { "<Cmd>Telescope live_grep_args<CR>", "Live Grep Args" },
+	L = { "<Cmd>Telescope grep_string<CR>", "Grep String" },
+	r = { "<Cmd>Telescope resume<CR>", "Resume last search" },
+	c = { "<Cmd>Telescope current_buffer_fuzzy_find<CR>", "Current Buffer Fuzzy Find" },
+	-- 列出所有函数、变量等
+	t = { "<Cmd>Telescope treesitter<CR>", "Treesitter" },
 	-- 书签相关搜索
 	m = {
 		name = "bookmarks",
