@@ -42,10 +42,11 @@ keymap("n", "sh", ":set nosplitright<CR>:vsplit<CR>", { noremap = true, silent =
 keymap("n", "sk", ":set nosplitbelow<CR>:split<CR>", { noremap = true, silent = true, desc = "Split top" })
 keymap("n", "sj", ":set splitbelow<CR>:split<CR>", { noremap = true, silent = true, desc = "Split below" })
 -- 调整分屏大小
-keymap("n", "sL", ":vertical resize-5<CR>", { noremap = true, silent = true, desc = "Resize right" })
-keymap("n", "sH", ":vertical resize+5<CR>", { noremap = true, silent = true, desc = "Resize left" })
-keymap("n", "sK", ":res +5<CR>", { noremap = true, silent = true, desc = "Resize top" })
-keymap("n", "sJ", ":res -5<CR>", { noremap = true, silent = true, desc = "Resize below" })
+keymap("n", "sL", "<C-w>>", { noremap = true, silent = true, desc = "Resize right" })
+keymap("n", "sH", "<C-w><", { noremap = true, silent = true, desc = "Resize left" })
+keymap("n", "sK", "<C-w>-", { noremap = true, silent = true, desc = "Resize top" })
+keymap("n", "sJ", "<C-w>+", { noremap = true, silent = true, desc = "Resize below" })
+keymap("n", "s=", "<C-w>=", { noremap = true, silent = true, desc = "Resize below" })
 
 -- 移动一行文字
 keymap("n", "<C-S-Up>", "mz:m-2<CR>`z", { noremap = true, silent = true })
