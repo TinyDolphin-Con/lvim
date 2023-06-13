@@ -47,20 +47,20 @@ opt.wildmenu = true
 opt.wildmode = "list:longest,full"
 -- 在匹配列表中忽略指定类型的文件
 opt.wildignore = {
-	"*.aux,*.out,*.toc",
-	"*.o,*.obj,*.dll,*.jar,*.pyc,__pycache__,*.rbc,*.class",
-	-- media
-	"*.ai,*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png,*.psd,*.webp",
-	"*.avi,*.m4a,*.mp3,*.oga,*.ogg,*.wav,*.webm",
-	"*.eot,*.otf,*.ttf,*.woff",
-	"*.doc,*.pdf",
-	-- archives
-	"*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz",
-	-- temp/system
-	"*.*~,*~ ",
-	"*.swp,.lock,.DS_Store,._*,tags.lock",
-	-- version control
-	".git,.svn",
+  "*.aux,*.out,*.toc",
+  "*.o,*.obj,*.dll,*.jar,*.pyc,__pycache__,*.rbc,*.class",
+  -- media
+  "*.ai,*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png,*.psd,*.webp",
+  "*.avi,*.m4a,*.mp3,*.oga,*.ogg,*.wav,*.webm",
+  "*.eot,*.otf,*.ttf,*.woff",
+  "*.doc,*.pdf",
+  -- archives
+  "*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz",
+  -- temp/system
+  "*.*~,*~ ",
+  "*.swp,.lock,.DS_Store,._*,tags.lock",
+  -- version control
+  ".git,.svn",
 }
 -- 命令行高度
 opt.cmdheight = 2
@@ -193,7 +193,7 @@ opt.redrawtime = 1500
 
 -- 打开文件时，返回到最后的编辑位置并且居中显示
 vim.cmd(
-	[[autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | execute 'silent! ' . line("'\"") . 'foldopen!' | execute 'normal! ' . line("'\"") . 'Gzz' | endif]]
+  [[autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | execute 'silent! ' . line("'\"") . 'foldopen!' | execute 'normal! ' . line("'\"") . 'Gzz' | endif]]
 )
 
 -- 保存时删除末尾空白
@@ -203,7 +203,7 @@ vim.cmd([[
 
 -- 设置光标
 opt.guicursor =
-	"n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
+"n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 
 -- 当使用命令行时，总是报告文件有几行被修改过
 opt.report = 0
