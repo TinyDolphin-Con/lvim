@@ -223,9 +223,10 @@ vim.cmd([[
 -- general
 -- 主题
 -- lvim.colorscheme = "lunar"
-lvim.colorscheme = "tokyonight"
+-- lvim.colorscheme = "tokyonight"
+lvim.colorscheme = "gruvbox"
 -- 透明背景
--- lvim.transparent_window = true
+lvim.transparent_window = true
 -- 日志级别
 lvim.log.level = "info"
 -- 保存时进行格式化
