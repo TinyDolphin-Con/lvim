@@ -34,8 +34,8 @@ keymap({ "n", "x" }, "<leader><CR>", ":nohlsearch<CR>", { noremap = true, silent
 -- 搜索并居中
 keymap({ "n", "x" }, "n", "nzz", { noremap = true, silent = true })
 keymap({ "n", "x" }, "N", "Nzz", { noremap = true, silent = true })
-keymap({ "n", "x" }, "*", "*zz", { noremap = true, silent = true })
-keymap({ "n", "x" }, "#", "#zz", { noremap = true, silent = true })
+-- keymap({ "n", "x" }, "*", "*zz", { noremap = true, silent = true })
+-- keymap({ "n", "x" }, "#", "#zz", { noremap = true, silent = true })
 keymap({ "n", "x" }, "<C-i>", "<C-i>zz", { noremap = true, silent = true })
 keymap({ "n", "x" }, "<C-o>", "<C-o>zz", { noremap = true, silent = true })
 
