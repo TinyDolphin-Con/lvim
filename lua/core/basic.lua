@@ -85,9 +85,9 @@ opt.showmatch = true
 -- 高亮显示匹配括号的时间（单位：十分之一秒）
 opt.matchtime = 15
 
--- 光标距离buffer的顶部或底部保持 999 行距离（即保持居中）
-opt.scrolloff = 999
-opt.sidescrolloff = 999
+-- 光标距离buffer的顶部或底部保持 9 行距离
+opt.scrolloff = 9
+opt.sidescrolloff = 9
 
 -- 在被分割的窗口间显示空白，便于阅读
 -- opt.fillchars = {vert = " ", stl = " ", stlnc = " "}
