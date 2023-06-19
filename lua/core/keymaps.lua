@@ -22,9 +22,11 @@ keymap({ "n", "x" }, "VV", "<Esc>gg0vG$<CR>", { noremap = true, silent = true })
 -- 取消搜索高亮
 keymap({ "n", "x" }, "<leader><CR>", ":nohlsearch<CR>", { noremap = true, silent = true })
 
--- 向下翻转半页并居中
-keymap("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
-keymap("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
+-- 向下翻转半页并居中（:set scrolloff=999）
+-- keymap("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
+-- keymap("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
+-- keymap("n", "<C-f>", "<C-f>zz", { noremap = true, silent = true })
+-- keymap("n", "<C-b>", "<C-b>zz", { noremap = true, silent = true })
 -- 搜索并居中
 keymap({ "n", "x" }, "n", "nzz", { noremap = true, silent = true })
 keymap({ "n", "x" }, "N", "Nzz", { noremap = true, silent = true })
